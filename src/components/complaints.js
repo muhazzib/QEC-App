@@ -10,7 +10,8 @@ class Complaints extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            complaints: []
+            complaints: [],
+            user: ''
         }
     }
 
@@ -71,11 +72,10 @@ class Complaints extends Component {
                         <li onClick={() => browserHistory.push({ pathname: '/', state: { user: this.state.user } })}>Home</li>
                         <li onClick={() => browserHistory.push('/users')}>Users</li>
                         <li onClick={() => browserHistory.push('/complaints')}>Complaints</li>
-                        <li>Stats</li>
                     </ul>
                 </div>
                 <div className='home-child2'>
-                    <h1>Complaints</h1>
+                    <h1 className='addComplainH'>Complaints</h1>
                     {
                         this.state.complaints.map((value, index) => {
                             return (

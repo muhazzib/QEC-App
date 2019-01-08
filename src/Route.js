@@ -107,7 +107,12 @@ const checkAuth = (nextState, replace, callback) => {
                         role: obj.role,
                         uid: obj.uid
                     }
-                    browserHistory.push({ pathname: nextState.location.pathname, state: { user: user } })
+                    if(user.role==='admin'){
+                        browserHistory.push({ pathname: '/', state: { user: user } })
+                    }
+                    else{
+                        callback()
+                    }
                 })
             }
             else {
@@ -131,9 +136,13 @@ class Navbar2 extends Component {
     }
 
     removeUser = () => {
-        localStorage.removeItem('user'),
+        fire.auth().signOut().then(function() {
+            localStorage.removeItem('user'),
             authBol.auth = false;
-        browserHistory.push('/signin');
+            browserHistory.push('/signin');
+          }, function(error) {
+            console.error('Sign Out Error', error);
+          });
     }
 
     componentWillMount() {
@@ -149,7 +158,7 @@ class Navbar2 extends Component {
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarBrand href="/">CRS</NavbarBrand>
                     {
                         this.props.location.pathname == '/home' ? (
                             <NavbarToggler onClick={this.toggle} />
