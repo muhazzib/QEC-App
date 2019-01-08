@@ -13,7 +13,8 @@ class Users extends Component {
             email: '',
             password: '',
             designation: '',
-            users: []
+            users: [],
+            user:''
         }
     }
     toggle = () => {
@@ -78,6 +79,20 @@ class Users extends Component {
     }
 
     componentDidMount() {
+        if (this.props.location.state) {
+            let UserObj = {
+                role: this.props.location.state.user.role,
+                uid: this.props.location.state.user.uid
+            }
+            this.setState({
+                user: UserObj
+            })
+        }
+    
+        else {
+    
+        }
+
         
         database.child('users/').on("child_added", (snapshot) => {
             let obj = snapshot.val()
@@ -105,7 +120,7 @@ class Users extends Component {
             <div className='home-main-div'>
                 <div className='home-child1'>
                     <ul className='nav-list'>
-                        <li>Home</li>
+                        <li onClick={() => browserHistory.push({pathname:'/',state:{user:this.state.user}})}>Home</li>
                         <li onClick={() => browserHistory.push('/users')}>Users</li>
                         <li onClick={() => browserHistory.push('/complaints')}>Complaints</li>
                         <li>Stats</li>

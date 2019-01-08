@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import { database } from '../fire'
-
 import '../App.css'
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -10,10 +10,11 @@ class Home extends Component {
             user: '',
             department: '',
             name: '',
-            details: ''
+            details: '',
         }
     }
     componentDidMount() {
+        console.log(this.props.location.state,'aaaaaaaaaaaaaaaaa')
         if (this.props.location.state) {
             let UserObj = {
                 role: this.props.location.state.user.role,
@@ -22,12 +23,14 @@ class Home extends Component {
             this.setState({
                 user: UserObj
             })
-            console.log(this.props, '-------')
         }
 
         else {
 
         }
+
+
+        
     }
     eventChange = (ev) => {
         this.setState({
@@ -63,15 +66,15 @@ class Home extends Component {
                         this.state.user ?
                             this.state.user.role == 'user' ? (
                                 <ul className='nav-list'>
-                                    <li>Home</li>
-                                    <li onClick={() => browserHistory.push('/me')}>My Complaints</li>
-                                    <li>Stats</li>
+                                    <li className= 'list-item selected'>Home</li>
+                                    <li className= 'list-item' onClick={() => browserHistory.push({pathname:'/mycomplaints',state:{user:this.state.user}})}>My Complaints</li>
+                                    <li className= 'list-item'>Stats</li>
                                 </ul>) : (
                                     <ul className='nav-list'>
-                                        <li>Home</li>
-                                        <li onClick={() => browserHistory.push('/users')}>Users</li>
-                                        <li onClick={() => browserHistory.push('/complaints')}>Complaints</li>
-                                        <li>Stats</li>
+                                        <li className= 'list-Item'>Home</li>
+                                        <li className= 'list-item' onClick={() => browserHistory.push('/users')}>Users</li>
+                                        <li className= 'list-item' onClick={() => browserHistory.push('/complaints')}>Complaints</li>
+                                        <li className= 'list-item'>Stats</li>
                                     </ul>) : null
                     }
                 </div>

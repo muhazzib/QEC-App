@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import {fire,database} from '../fire' 
+import { authBol } from '../auth.js'
+
 class Signin extends Component {
     constructor(props){
         super(props);
@@ -20,6 +22,8 @@ class Signin extends Component {
             database.child('users/'+success.uid).on("child_added",(snapshot)=>{
                 let obj = snapshot.val()
                 // obj.key = snapshot.key
+                localStorage.setItem('user',obj.uid)
+                authBol.auth=true
                 console.log(obj,'signinUser')
                 let user={
                     role:obj.role,
