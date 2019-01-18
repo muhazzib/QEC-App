@@ -5,6 +5,7 @@ import Home from './components/home'
 import User from './components/users'
 import Complaints from './components/complaints'
 import Me from './components/me'
+import logo from './Graphics/LOGO.svg';
 
 import { fire, database } from './fire'
 import {
@@ -13,6 +14,7 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
+    Button,
     NavItem,
     NavLink,
     UncontrolledDropdown,
@@ -107,11 +109,34 @@ const checkAuth = (nextState, replace, callback) => {
                         role: obj.role,
                         uid: obj.uid
                     }
-                    if(user.role==='admin'){
-                        browserHistory.push({ pathname: '/', state: { user: user } })
+                    console.log(nextState, '--------asdad')
+                    if (user.role === 'admin') {
+                        if (nextState.location.pathname == '/complaints') {
+                            browserHistory.push({ pathname: '/complaints', state: { user: user } })
+                        }
+                        else if (nextState.location.pathname == '/users') {
+                            browserHistory.push({ pathname: '/users', state: { user: user } })
+                        }
+                        else if (nextState.location.pathname == '/') {
+                            browserHistory.push({ pathname: '/', state: { user: user } })
+                        }
+                        else{
+                            browserHistory.push({ pathname: '/', state: { user: user } })
+                        }
+                        // callback()
                     }
-                    else{
-                        callback()
+                    else {
+                        if (nextState.location.pathname !== '/' && nextState.location.pathname !== '/mycomplaints') {
+                            browserHistory.push({ pathname: '/', state: { user: user } })
+                        }
+                        else {
+                            if (nextState.location.pathname == '/mycomplaints') {
+                                browserHistory.push({ pathname: '/mycomplaints', state: { user: user } })
+                            }
+                            else if (nextState.location.pathname == '/') {
+                                browserHistory.push({ pathname: '/', state: { user: user } })
+                            }
+                        }
                     }
                 })
             }
@@ -136,13 +161,13 @@ class Navbar2 extends Component {
     }
 
     removeUser = () => {
-        fire.auth().signOut().then(function() {
+        fire.auth().signOut().then(function () {
             localStorage.removeItem('user'),
-            authBol.auth = false;
+                authBol.auth = false;
             browserHistory.push('/signin');
-          }, function(error) {
+        }, function (error) {
             console.error('Sign Out Error', error);
-          });
+        });
     }
 
     componentWillMount() {
@@ -157,19 +182,22 @@ class Navbar2 extends Component {
         console.log(this.props.location.pathname)
         return (
             <div>
-                <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">CRS</NavbarBrand>
+                <Navbar className="nav-bar" expand="md">
+                    <img src={logo} width='80px' height='80px' />
+                    <NavbarBrand className="brand" href="/">
+
+                        Complaints Management System | SMIU</NavbarBrand>
                     {
                         this.props.location.pathname == '/home' ? (
                             <NavbarToggler onClick={this.toggle} />
                         ) : null
                     }
                     {
-                        this.props.location.pathname == '/' || this.props.location.pathname ==  '/complaints' || this.props.location.pathname ==  '/mycomplaints' || this.props.location.pathname ==  '/users'? (
+                        this.props.location.pathname == '/' || this.props.location.pathname == '/complaints' || this.props.location.pathname == '/mycomplaints' || this.props.location.pathname == '/users' ? (
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
-                                            <UncontrolledDropdown nav inNavbar>
-                                                <DropdownToggle nav caret>
+                                    {/* <UncontrolledDropdown nav inNavbar>
+                                                <DropdownToggle className="nav-bar" nav caret>
                                                     Options
                                                 </DropdownToggle>
                                                 <DropdownMenu right>
@@ -177,7 +205,8 @@ class Navbar2 extends Component {
                                                         Logout
                                                     </DropdownItem>
                                                 </DropdownMenu>
-                                            </UncontrolledDropdown>
+                                            </UncontrolledDropdown> */}
+                                    <Button color='danger' className="logout" onClick={this.removeUser}>Logout</Button>
                                 </Nav>
                             </Collapse>
                         ) : null

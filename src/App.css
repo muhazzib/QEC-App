@@ -1,5 +1,9 @@
+html{
+  
+}
 .App {
   text-align: center;
+  font-family: 'Courier New', Courier, monospace !important
 }
 
 .App-logo {
@@ -33,33 +37,54 @@
 .nav-list>li{
   list-style: none;
   margin-bottom: 10px;
-  color: rgba(255,255,255,.7);
+  color: white;
   font-weight: 400
 }
 .nav-list>li:hover{
   cursor: pointer;
-  color: #4fc3f7
+  color: #81bcff
 }
 .home-main-div{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 24px
 }
 .home-child1{
-  width: 20%;
-  background-color: #19212b;
-  min-height: 100vh ;
+  width: 25%;
+  background-color: #364ca0;
+  min-height: 87.3vh ;
 }
 .home-child2{
-  width: 80%;
-  padding-left: 2%;
-    padding-right: 2%;
+    background-color: #e8e4e1;
+    width: 75%;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-bottom: 20px; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* font-weight: bold !important */
 }
 .card{
   margin-bottom: 20px;
 }
-
+.bold{
+  font-weight: bolder;
+  color: #427abc !important;
+  /* font-size: 30px; */
+}
+.email-address{
+  font-size: 20px; 
+}
+.admin{
+  color: red !important;
+}
+.faculty{
+  color: #00aeff
+}
+.student{
+  color: rgb(0, 155, 0);
+}
 .body{
   margin: 50px;
 }
@@ -104,29 +129,49 @@
   .AddComDiv{
     width: 500px;
     height: 300px;
-    border: 1px dashed black;
+    padding-top: 5px;
+    /* border: 0px dashed black; */
     margin: 120px auto 0px auto;
-    
+    background-color: white;
+    border-radius: 20px; 
   }
-  .AddComDiv:hover{
-    cursor: all-scroll;
+  .addComplainH{
+    margin-top: 40px;
+  }
+  .addComp{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: -120px;
+  }
+  .AddComDiv:hover{     
+    cursor: crosshair;
   }
   .AddComDiv>p{
     margin-top: 132px;
     text-align: center;
   }
 
-  .addComplainH{
-    margin-top: 50px
+  .welcome{
+    margin-top: 50px;
+  }
+  .complaint{
+    /* text-align: center; */
+    color: #0074aa;
+  }
+  .complaint-header{
+    background-image: url(Graphics/NAV.svg);
+    background-repeat: no-repeat;
+    background-position-x: 100%;
   }
   .fSubBtn{
     margin-right: 5px
   }
-  .signInDiv{
+  /*.signInDiv{
+    border: 1px solid gray;
     width: 400px;
-    background: currentColor;
-    /* margin: 0 auto; */
+    background: white;
     margin: 0 auto;
+    margin-top: -150px;
     display: block;
     position: absolute;
     left: 0;
@@ -136,12 +181,114 @@
     padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 20px;
-    box-shadow: 3px 3px 5px #cecece;
+    /* box-shadow: 8px 8px 3px #cecece; 
     border-radius: 5px;
+    text-align: center;
+  }*/
+  .signInBody{
+    height: 80%;
+    /* display: none; */
+    /* padding: 343px;  */
+    background:#e9ebee;
+    height: 87vh; 
+    padding-top:8% ;
+    text-align: center;
+  }
+  .signInDiv{
+    margin: 0 auto;
+    width: 50%;
+    padding: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+    /* border: 1px solid black; */
+    background: white;
   }
   .signInDiv>input{
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-indent: 10px;
-    border-radius: 2px;
+    border-radius: 0px;
   }
+  .loginBtn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+    background-color: #33489e
+  }
+  .loginBtn:hover{
+    background-color: white;
+    border: 1px solid #33489e;
+    color: #33489e !important
+  }
+  #Popover1{
+    text-align: center
+  }
+  
+  .popover{
+    /* margin-left: 100px */margin-top: 10px;
+  }
+  
+  .popover-header{
+    background-color: #17a2b8 !important;
+    color: white;
+  }
+  .nav-bar{
+    background-image: url(Graphics/NAV.svg);
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+.brand{
+  /* text-shadow: 5px 0px 5px rgb(0, 77, 10); */
+  padding-left: 20px;
+  color: #427abc  !important;
+  /* background-color: #008cff ; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px
+}
+.card-text{
+  color: black;
+}
+.disabled{
+  font-style: oblique;
+  font-size: 15px;
+  color: black;
+}
+.loginLogo{
+  text-align: center;
+  margin: 25px;
+  margin-top: 5px;
+}
+.loginLogo>h5{
+  margin-top: 20px;
+  font-weight: light;
+  /* font-size: 24px;   */
+}
+.usersStat{
+  text-align: center;
+  width: 80%;
+  margin-top: 8%;
+  margin-right: 10%;
+  margin-left: 10%;
+  padding: 25px;
+  background: white;
+}
+.pending{
+  text-align: center;
+  width: 80%;
+  margin-top: 4%;
+  margin-right: 10%;
+  margin-left: 10%;
+  padding: 25px;
+  background: white;
+}
+.resolved{
+  text-align: center;
+  width:80%;
+  margin-top: 4%;
+  margin-right: 10%;
+  margin-left: 10%;
+  padding: 25px;
+  background: white;
+}

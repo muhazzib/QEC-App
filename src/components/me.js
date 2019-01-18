@@ -6,6 +6,9 @@ import {
     CardTitle, CardText
 } from 'reactstrap';
 import '../App.css'
+import myComp from '../Graphics/My Complaints.svg';
+import home from '../Graphics/Home.svg';
+
 
 class Me extends Component {
     constructor(props) {
@@ -61,8 +64,24 @@ class Me extends Component {
             <div className='home-main-div'>
                 <div className='home-child1'>
                     <ul className='nav-list'>
-                        <li className='list-Item' onClick={() => browserHistory.push({ pathname: '/', state: { user: this.state.user } })}>Home</li>
-                        <li className='list-Item seleted'>My Complaints</li>
+                        <li className='list-Item' onClick={() => browserHistory.push({ pathname: '/', state: { user: this.state.user } })}>
+                            <table>
+                                <tr>
+                                    <td><img src={home} width='20px' height= '30px'/></td>
+                                    <td width='12px'></td>
+                                    <td style={{paddingTop: 10}}> Home</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li className='list-Item seleted'>
+                            <table>
+                                <tr>
+                                    <td><img src={myComp} width='20px' height= '30px'/></td>
+                                    <td width='12px'></td>
+                                    <td style={{paddingTop: 10}}>My Complaints</td>
+                                </tr>
+                            </table>
+                        </li>
                     </ul>
                 </div>
                 <div className='home-child2'>
@@ -73,13 +92,13 @@ class Me extends Component {
                                 return (
                                     <div>
 
-                                        <Card>
-                                            <CardHeader>{value.name}</CardHeader>
+                                        <Card className= 'complaint'>
+                                            <CardHeader className='complaint-header' style={{ fontWeight: 'bolder'}}><h3>{value.name}</h3></CardHeader>
                                             <CardBody>
-                                                <CardTitle>Special Title Treatment</CardTitle>
-                                                <CardText>{value.details}</CardText>
+                                                {/* <CardTitle>Special Title Treatment</CardTitle> */}
+                                                <CardText className='card-text'>{value.details}</CardText>
                                             </CardBody>
-                                            <CardFooter>{value.department}</CardFooter>
+                                            <CardFooter><span className='disabled'>Sent to: </span><h4>{value.department}</h4></CardFooter>
                                         </Card>
                                     </div>
                                 )

@@ -4,16 +4,28 @@ import { fire, database } from '../fire'
 import { authBol } from '../auth.js'
 import {Button} from 'reactstrap';
 import swal from 'sweetalert';
+import { Form, FormGroup, Label, Input, FormText, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import logo from '../Graphics/LOGO.svg';
 
 class Signin extends Component {
     constructor(props) {
         super(props);
+        this.toggle = this.toggle.bind(this);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            popoverOpen: false
         }
     }
+
+    toggle = () => {
+        this.setState({
+          popoverOpen: !this.state.popoverOpen
+        });
+    }
+
     Login = () => {
+
         const obj = {
             email: this.state.email,
             password: this.state.password
@@ -59,14 +71,30 @@ class Signin extends Component {
             password: ev.target.value
         })
     }
+    
     render() {
         return (
-            <div className='signInDiv'>
-               <input type="email" onChange={this.emailChange} placeholder="Enter email here" value={this.state.email}/><br />
-                <input type="password" onChange={this.passChange} placeholder="Enter password here" value={this.state.password}/>
-                <Button color="primary" onClick={this.Login}>Login</Button>
+            <div className='signInBody'>
+                <div className='signInDiv'>
+                    <div className='loginLogo'>
+                        {/* <img src={logo} width='80px' height= '80px'/> */}
+                        {/* <h4>Complaints Management System</h4> */}
+                        <h5>Please enter your credentials to proceed.</h5>
+                    </div>
+                    
+                    <Input type="email" onChange={this.emailChange} placeholder="Enter email here" value={this.state.email}/>
+                    
+                    <Input type="password" onChange={this.passChange} placeholder="Enter password here" value={this.state.password}/>
+                    <Button className='loginBtn' color="primary" size="lg" block onClick={this.Login}>Login</Button>
+                    
+                    <Button  id='Popover1' color='link'>Forgot your password?</Button>
+                    
+                    <Popover className='popover' placement="right" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+                        <PopoverHeader className='popover-header'>Info</PopoverHeader>
+                        <PopoverBody>Please contact IT department to recover your password.</PopoverBody>
+                    </Popover>
+                </div>
             </div>
-
         );
     }
 }
